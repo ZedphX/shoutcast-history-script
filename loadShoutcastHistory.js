@@ -46,16 +46,19 @@ function formatSongList(html) {
   // Format the elements
   songList.forEach((songElement) => {
     let songData = songElement.getElementsByTagName("td");
-    formattedList["played"].push({
-      time: songData[0].innerHTML,
-      name: songData[1].innerHTML,
-    });
+    if (songData.length >= 2) {
+      formattedList["played"].push({
+        time: songData[0].innerHTML,
+        name: songData[1].innerHTML,
+      });
+    }
   });
 
   // Store the current song in a specific field
   // and removes it from the history list
-  formattedList["playing"] = formattedList["played"][0];
-  formattedList["played"].splice(0, 1);
-
+  if (formattedList["played"].length > 0) {
+    formattedList["playing"] = formattedList["played"][0];
+    formattedList["played"].splice(0, 1);
+  }
   return formattedList;
 }

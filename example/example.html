@@ -7,7 +7,7 @@
             var shoutcastSongs = loadShoutcastHistory()
 
             shoutcastSongs.forEach((songList, index) => {
-                if(songList.played) {
+                if(songList.played && songList.playing.time) {
                     let html = `
                         <table>
                     `
