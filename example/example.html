@@ -1,0 +1,45 @@
+<html>
+    <script src="../loadShoutcastHistory.js"></script>
+    <div id="shoutcasthistory0"></div>
+    <div id="shoutcasthistory1"></div>
+    <script>
+        function loadSongsOnDiv() {
+            var shoutcastSongs = loadShoutcastHistory()
+
+            shoutcastSongs.forEach((songList, index) => {
+                if(songList.played) {
+                    let html = `
+                        <table>
+                    `
+
+                    html += `
+                        <tr style="color: blue;">
+                            <td>Time: ${songList.playing.time}</td>
+                            <td>Name: ${songList.playing.name}</td>
+                            <td>PLAYING</td>
+                        </tr>
+                    `
+
+                    songList.played.forEach(song => {
+                        html += `
+                            <tr>
+                                <td>Time: ${song.time}</td>
+                                <td>Name: ${song.name}</td>
+                            </tr>
+                        `
+                    });
+
+                    html += `
+                        </table>
+                    `
+
+                    let historyDiv = document.getElementById('shoutcasthistory'+index);
+                    if(historyDiv) historyDiv.innerHTML = html
+                }
+            });
+        }
+
+        loadSongsOnDiv()
+        setInterval("loadSongsOnDiv()", 15000)
+    </script>
+</html>
