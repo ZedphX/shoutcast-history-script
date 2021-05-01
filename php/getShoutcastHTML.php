@@ -5,9 +5,9 @@
 # Made in php mainly to avoid CORS.           #
 ###############################################
 
-$shoutcastUrl = $_POST['url'];
+$data = json_decode(file_get_contents("php://input"));
 
-$songsHtml = file_get_contents($shoutcastUrl);
+$songsHtml = file_get_contents($data->url);
 
 echo $songsHtml;
 

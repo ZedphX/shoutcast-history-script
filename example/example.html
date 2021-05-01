@@ -3,8 +3,8 @@
     <div id="shoutcasthistory0"></div>
     <div id="shoutcasthistory1"></div>
     <script>
-        function loadSongsOnDiv() {
-            var shoutcastSongs = loadShoutcastHistory()
+        async function loadSongsOnDiv() {
+            var shoutcastSongs = await loadShoutcastHistory()
 
             shoutcastSongs.forEach((songList, index) => {
                 if(songList.played && songList.playing.time) {
